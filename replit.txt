@@ -1,0 +1,5 @@
+run = "luvit ."
+entrypoint = "init.lua"
+
+[nix]
+channel = "unstable"
