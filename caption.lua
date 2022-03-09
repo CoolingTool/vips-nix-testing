@@ -17,8 +17,6 @@ local function caption(i, o, str, opt)
 	local text_dpi = 600 * (width / 1000)
 	local text_width = width - ((width / 25) * 2)
 
-	p(page_height, delay)
-
 	local font_string, font_path = 'futura', 'assets/caption.otf'
 
 	-- actual image generation time
@@ -42,8 +40,6 @@ local function caption(i, o, str, opt)
 
 		local page_height = image:get('page-height')
 		local pages = image:height() / page_height
-
-		p(pages, page_height)
 
 		for i = 0, pages-1 do
 			local page = image:crop(0, i * page_height, width, page_height)

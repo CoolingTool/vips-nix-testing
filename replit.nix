@@ -1,14 +1,28 @@
-let
-	luvitPkgs = import (fetchTarball "https://github.com/CoolingTool/luvit-nix/archive/fork.tar.gz") {};
-in { pkgs }: {
+{ pkgs }: let
+	luvitPkgs = import ./nix/luvit.nix {};
+	cgif = import ./nix/cgif.nix {};
+	vipsModifed = pkgs.vips.overrideAttrs (oldAttrs: rec {
+		version = "8.12.2";
+		src = pkgs.fetchFromGitHub {
+			owner = "libvips";
+			repo = "libvips";
+			rev = "v${version}";
+			sha256 = "sha256-ffDJJWe/SzG+lppXEiyfXXL5KLdZgnMjv1SYnuYnh4c=";
+			extraPostFetch = ''
+			  rm -r $out/test/test-suite/images/
+			'';
+		};
+		buildInputs = oldAttrs.buildInputs ++ [ cgif ];
+	});
+in {
     deps = [
 		luvitPkgs.luvit
 		luvitPkgs.lit
-		pkgs.vips
+		vipsModifed
     ];
-	env = {
+	env = { 
 		LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
-	      pkgs.vips
-	    ];
+	      vipsModifed
+		];
 	};
 }

@@ -41,7 +41,7 @@ local function stitch(i, o, fps)
 	final:set_type(g.gint_type, "page-height", page_height)
 	final:set_type(g.array_int_type, "delay", fpstodelay(fps, pages))
 	
-	final:write_to_file(path.resolve(o), {effort = 10, dither = 0})
+	final:write_to_file(path.resolve(o), {effort = 1, dither = 0})
 
 	print('stitch:', (uv.hrtime()-x)*1e-9)
 end
