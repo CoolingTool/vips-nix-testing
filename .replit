@@ -3,3 +3,6 @@ entrypoint = "init.lua"
 
 [nix]
 channel = "unstable"
+
+[env]
+XDG_DATA_HOME="/home/runner/$REPL_SLUG/.local/share"

@@ -17,14 +17,16 @@ local function caption(i, o, str, opt)
 	local text_dpi = 600 * (width / 1000)
 	local text_width = width - ((width / 25) * 2)
 
-	local font_string, font_path = 'futura', 'assets/caption.otf'
+	local font_string = 'futura' 
 
 	-- actual image generation time
 
 	local text = Image.text(str, {
-		rgba = true, align = 'centre',
-		font = font_string, fontfile = font_path,
-		dpi = text_dpi, width = text_width
+		rgba = true,
+		align = 'centre',
+		font = font_string,
+		dpi = text_dpi,
+		width = text_width,
 	})
 
 	local caption_image = text:flatten{background = 255}

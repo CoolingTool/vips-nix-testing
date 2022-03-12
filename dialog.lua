@@ -12,7 +12,6 @@ local function dialog(o, text)
 	local width = 480
 	
 	local font_string = 'CCComicrazy-Regular'
-	local font_path = 'assets/dialog.ttf'
 
 	local frames = {}
 
@@ -30,7 +29,6 @@ local function dialog(o, text)
 		local text = Image.text(dialog_text, {
 			rgba = true,
 			font = font_string,
-			fontfile = font_path,
 			dpi = 175,
 			width = width,})
 
